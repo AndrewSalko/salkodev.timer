@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalkoDev.Timer", "SalkoDev.Timer\SalkoDev.Timer.csproj", "{BBC4A52C-EFE4-47B3-A5B8-EAD4F63BC63F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBC4A52C-EFE4-47B3-A5B8-EAD4F63BC63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC4A52C-EFE4-47B3-A5B8-EAD4F63BC63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC4A52C-EFE4-47B3-A5B8-EAD4F63BC63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC4A52C-EFE4-47B3-A5B8-EAD4F63BC63F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
