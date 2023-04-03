@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +18,8 @@ namespace SalkoDev.Timer
 			InitializeComponent();
 		}
 
+		Button[] _ButtonsPredefined;
+
 		int _SecondsLeft;
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -31,15 +33,27 @@ namespace SalkoDev.Timer
 			_ComboBoxInterval.SelectedIndex = 0;
 			_LabelTimer.Text = string.Empty;
 
+			_ButtonsPredefined = new Button[]
+			{
+				_Button5, _Button10, _Button15, _Button20, _Button25, _Button30, _Button40, _Button45, _Button50, _Button60, _Button120
+			};
+
 			_UpdateCommands();
 		}
 
 		void _UpdateCommands()
 		{
-			_ButtonCancel.Enabled = _Timer.Enabled;
-			_ButtonStart.Enabled = !_Timer.Enabled;
+			bool timerEnabled = _Timer.Enabled;
 
-			_ComboBoxInterval.Enabled = !_Timer.Enabled;
+			_ButtonCancel.Enabled = timerEnabled;
+			_ButtonStart.Enabled = !timerEnabled;
+
+			_ComboBoxInterval.Enabled = !timerEnabled;
+
+			foreach (Button button in _ButtonsPredefined)
+			{
+				button.Enabled = !timerEnabled;
+			}
 		}
 
 		private void _Timer_Tick(object sender, EventArgs e)
@@ -86,23 +100,42 @@ namespace SalkoDev.Timer
 
 		private void _ButtonStart_Click(object sender, EventArgs e)
 		{
+			int minutes = (int)_ComboBoxInterval.SelectedItem;
+
+			_Start(minutes);
+		}
+
+		void _Start(int minutes)
+		{
 			if (_Timer.Enabled)
 				return;
 
 			_Timer.Enabled = true;
 
-			int minutes = (int)_ComboBoxInterval.SelectedItem;
 			_SecondsLeft = minutes * 60;
-			//_SecondsLeft = 10;
-
 
 			_UpdateCommands();
 		}
+
 
 		private void _ButtonCancel_Click(object sender, EventArgs e)
 		{
 			_StopTimer();
 		}
 
+		private void _ButtonPredefined_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				Button b = (Button)sender;
+				int minutes = int.Parse(b.Tag as string);
+
+				_Start(minutes);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(this, ex.ToString(), ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 	}
 }
